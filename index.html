@@ -1,149 +1,257 @@
-<!doctype html>
-<html lang="pt-BR">
+<!DOCTYPE html>
+<html lang="pt-br">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Perfil Profissional — Bruno dos Santos Cavalcante</title>
-  <style>
-    :root{--accent:#0b63c6;--muted:#6b7280;--card:#ffffff;--bg:#f3f6fb;--glass:rgba(255,255,255,0.8)}
-    *{box-sizing:border-box}
-    body{font-family:Inter, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; margin:0;background:linear-gradient(180deg,var(--bg),#fff);color:#111}
-    .container{max-width:900px;margin:36px auto;padding:28px;background:var(--glass);border-radius:12px;box-shadow:0 8px 30px rgba(12,38,63,0.08);backdrop-filter:blur(6px)}
-    header{display:flex;gap:20px;align-items:center}
-    .avatar{width:110px;height:110px;border-radius:12px;background:linear-gradient(135deg,var(--accent),#2aa3ff);display:flex;align-items:center;justify-content:center;color:#fff;font-weight:700;font-size:28px}
-    h1{margin:0;font-size:22px}
-    .meta{color:var(--muted);margin-top:6px}
-    .grid{display:grid;grid-template-columns:1fr 320px;gap:24px;margin-top:22px}
-    .card{background:var(--card);padding:18px;border-radius:10px;box-shadow:0 2px 8px rgba(16,24,40,0.04)}
-    .section-title{font-weight:700;color:var(--accent);margin-bottom:10px}
-    ul.skills{list-style:none;padding:0;margin:0;display:grid;grid-template-columns:repeat(2, minmax(0,1fr));gap:8px}
-    ul.skills li{padding:8px 10px;border-radius:8px;background:#f8fafc;border:1px solid #eef2f7;font-size:14px}
-    .experience{display:flex;flex-direction:column;gap:12px}
-    .exp-item{border-left:3px solid #e6eefc;padding:10px 12px}
-    .exp-item h4{margin:0;font-size:16px}
-    .exp-item .period{font-size:13px;color:var(--muted);margin-top:4px}
-    .tech-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:8px}
-    .tech-pill{padding:6px 8px;border-radius:18px;background:#f1f5f9;border:1px solid #e6eefc;font-size:13px}
-    .actions{display:flex;gap:10px;align-items:center;margin-top:16px}
-    a.button{display:inline-block;padding:10px 14px;border-radius:10px;text-decoration:none;font-weight:600}
-    .btn-primary{background:var(--accent);color:#fff}
-    .btn-ghost{border:1px solid #dbeafe;color:var(--accent);background:transparent}
-    footer{margin-top:20px;color:var(--muted);font-size:13px;text-align:center}
-    @media (max-width:820px){.grid{grid-template-columns:1fr} .avatar{width:86px;height:86px;font-size:20px}}
-    /* print styles */
-    @media print{
-      body{background:#fff}
-      .container{box-shadow:none;border-radius:0;margin:0;padding:0}
-      .avatar, .actions, footer{display:none}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Para o Amor da Minha Vida</title>
+
+<style>
+
+/* RESET */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+/* FUNDO */
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: radial-gradient(circle at center,#200010,#000);
+    font-family:'Segoe UI', sans-serif;
+    overflow:hidden;
+    cursor:pointer;
+}
+
+/* LUZ */
+body::before{
+    content:"";
+    position:absolute;
+    width:600px;
+    height:600px;
+    background: radial-gradient(circle, rgba(255,0,90,0.4), transparent 70%);
+    filter:blur(120px);
+}
+
+/* CONTAINER */
+.scene{
+    position:relative;
+    width:100%;
+    height:100%;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+}
+
+/* ENVELOPE */
+.envelope{
+    width:360px;
+    height:230px;
+    position:relative;
+    transition:1.5s ease;
+    z-index:2;
+}
+
+/* CORPO */
+.envelope-body{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(145deg,#ffffff,#e6e6e6);
+    border-radius:8px;
+    box-shadow:0 25px 60px rgba(0,0,0,0.6);
+}
+
+/* ABA */
+.flap{
+    position:absolute;
+    width:100%;
+    height:100%;
+    background:linear-gradient(145deg,#f8f8f8,#dcdcdc);
+    clip-path:polygon(0 0,100% 0,50% 65%);
+    transform-origin:top;
+    transition:1.2s ease;
+}
+
+/* SELO */
+.seal{
+    position:absolute;
+    top:85px;
+    left:50%;
+    transform:translateX(-50%);
+    width:80px;
+    height:80px;
+    background:radial-gradient(circle,#ff2d75,#b0003a);
+    border-radius:50%;
+    box-shadow:0 0 25px rgba(255,0,90,0.8);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    color:white;
+    font-size:32px;
+    transition:0.6s ease;
+    z-index:5;
+}
+
+/* ANIMAÇÃO DE QUEBRAR LACRE */
+.scene.open .seal{
+    animation: breakSeal 0.6s forwards;
+}
+
+@keyframes breakSeal{
+    0%{transform:translateX(-50%) scale(1);}
+    40%{transform:translateX(-50%) scale(1.3) rotate(10deg);}
+    100%{
+        transform:translateX(-50%) scale(0) rotate(45deg);
+        opacity:0;
     }
-  </style>
+}
+
+/* TEXTO */
+.open-text{
+    position:absolute;
+    bottom:-40px;
+    width:100%;
+    text-align:center;
+    color:white;
+    font-size:16px;
+    letter-spacing:2px;
+}
+
+/* FOTO FINAL */
+.final{
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%, -50%) scale(0.8);
+    text-align:center;
+    opacity:0;
+    transition:1.5s ease;
+    z-index:3;
+}
+
+.final img{
+    width:400px;
+    max-width:90vw;
+    border-radius:20px;
+    box-shadow:0 30px 80px rgba(0,0,0,0.7);
+}
+
+/* TEXTO FINAL */
+.message{
+    margin-top:20px;
+    font-size:20px;
+    line-height:1.6;
+    color:#ff4d88;
+    opacity:0;
+    transition:2s ease;
+}
+
+/* ===== CORAÇÕES ===== */
+.heart{
+    position:absolute;
+    font-size:20px;
+    color:rgba(255,255,255,0.7);
+    animation: floatUp linear infinite;
+}
+
+@keyframes floatUp{
+    from{transform:translateY(100vh) scale(1);}
+    to{transform:translateY(-10vh) scale(1.5);}
+}
+
+/* ===== PÉTALAS ===== */
+.petal{
+    position:absolute;
+    width:15px;
+    height:15px;
+    background:linear-gradient(145deg,#ff4d88,#b0003a);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(45deg);
+    opacity:0.8;
+    animation: fall linear infinite;
+}
+
+@keyframes fall{
+    from{transform:translateY(-10vh) rotate(0deg);}
+    to{transform:translateY(110vh) rotate(360deg);}
+}
+
+/* ===== ABRIR ===== */
+
+.scene.open .flap{
+    transform:rotateX(-180deg);
+}
+
+.scene.open .envelope{
+    opacity:0;
+    transform:scale(0.8);
+}
+
+.scene.open .final{
+    opacity:1;
+    transform:translate(-50%, -50%) scale(1);
+}
+
+.scene.open .message{
+    opacity:1;
+}
+
+</style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="avatar">BS</div>
-      <div>
-        <h1>Bruno dos Santos Cavalcante — Especialista em TI e Suporte Técnico</h1>
-        <div class="meta">36 anos • Atuação em manutenção de computadores, redes, servidores, câmeras e suporte técnico</div>
-      </div>
-    </header>
 
-    <div class="grid">
-      <main>
-        <div class="card">
-          <div class="section-title">Resumo Profissional</div>
-          <p>Profissional com ampla experiência prática em Tecnologia da Informação, com foco em manutenção de hardware, suporte técnico presencial e remoto, configuração de redes, administração básica de servidores e instalação/manutenção de sistemas de monitoramento por vídeo. Atuação consolidada em ambiente educacional e empresarial, com capacidade para planejar e executar rotinas de manutenção preventiva e corretiva, bem como atender demandas de usuários com eficiência e cordialidade.</p>
-        </div>
+<div class="scene" id="scene">
 
-        <div class="card" style="margin-top:14px">
-          <div class="section-title">Experiência Relevante</div>
-          <div class="experience">
-            <div class="exp-item">
-              <h4>Professor, Assistente Administrativo &amp; TI (5 anos)</h4>
-              <div class="period">Atuação focada em suporte ao setor educacional, operação de sistemas e rotinas administrativas</div>
-              <ul style="margin-top:8px">
-                <li>Operação e manutenção de sistemas internos e softwares administrativos.</li>
-                <li>Instalação, configuração e manutenção de computadores e estações de trabalho.</li>
-                <li>Suporte a professores, coordenação e alunos — presencial e remoto.</li>
-                <li>Gestão de pequenas rotinas administrativas relacionadas à tecnologia.</li>
-              </ul>
-            </div>
-
-            <div class="exp-item">
-              <h4>Técnico em Informática — (7anos)</h4>
-              <div class="period">Suporte completo em manutenção, redes, servidores, impressoras e CFTV</div>
-              <ul style="margin-top:8px">
-                <li>Montagem, diagnóstico e reparo de desktops e notebooks (preventiva e corretiva).</li>
-                <li>Configuração e manutenção de redes locais (LAN), switches, roteadores e VLANs básicas.</li>
-                <li>Instalação e suporte a servidores de pequeno porte e serviços essenciais (compartilhamento de arquivos, impressão).</li>
-                <li>Instalação e manutenção de câmeras de monitoramento (CFTV) e DVR/NVR.</li>
-                <li>Configuração e manutenção de impressoras (rede e USB), solução de filas e permissões.</li>
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:14px">
-          <div class="section-title">Resultados e Abordagem</div>
-          <p>Adoto foco em diagnóstico rápido e ações corretivas com documentação das atividades realizadas. Prioridade em reduzir tempo de indisponibilidade e aumentar a vida útil dos equipamentos por meio de manutenção preventiva. Boa comunicação com usuários, capacidade para treinar equipes básicas e elaborar relatórios simples de interventos.</p>
-        </div>
-      </main>
-
-      <aside>
-        <div class="card">
-          <div class="section-title">Competências Técnicas</div>
-          <ul class="skills">
-            <li>Montagem de hardware</li>
-            <li>Diagnóstico de falhas</li>
-            <li>Formatação / SO</li>
-            <li>Redes LAN</li>
-            <li>Servidores básicos</li>
-            <li>Impressoras (rede)</li>
-            <li>CFTV / DVR / NVR</li>
-            <li>Suporte remoto</li>
-          </ul>
-
-          <div style="margin-top:12px">
-            <div class="section-title">Ferramentas e Tecnologias</div>
-            <div class="tech-list">
-              <span class="tech-pill">Windows</span>
-              <span class="tech-pill">Linux (básico)</span>
-              <span class="tech-pill">Active Directory (noções)</span>
-              <span class="tech-pill">Wi‑Fi / Roteadores</span>
-              <span class="tech-pill">TeamViewer / AnyDesk</span>
-              <span class="tech-pill">DVR / NVR</span>
-              <span class="tech-pill">MS Office</span>
-              <span class="tech-pill">Backup / Procedimentos</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="card" style="margin-top:14px">
-          <div class="section-title">Competências Comportamentais</div>
-          <ul style="margin:0;padding-left:18px">
-            <li>Comunicação clara e empática</li>
-            <li>Organização e documentação</li>
-            <li>Trabalho em equipe</li>
-            <li>Proatividade e solução de problemas</li>
-          </ul>
-        </div>
-
-                <div class="card" style="">
-          <div class="section-title"></div>
-          <div class="actions">
-         
-          </div>
-          <p style=""></p>
-        </div>
-      </aside>
+    <div class="envelope">
+        <div class="envelope-body"></div>
+        <div class="flap"></div>
+        <div class="seal">❤️</div>
+        <div class="open-text">Clique em qualquer lugar</div>
     </div>
 
-    <footer>
-      Documento gerado para apresentação de capacidades técnicas e operacionais — Bruno dos Santos Cavalcante
-    </footer>
-  </div>
-</body>
-</html>
+    <div class="final">
+        <img src="foto.jpeg" alt="Nós dois">
+        <div class="message">
+            Eu te amo infinitamente.<br>
+            Você é a melhor pessoa do mundo.<br>
+            Minha parceira, minha base, minha inspiração.<br>
+            Sempre estarei ao seu lado.
+        </div>
+    </div>
+
+</div>
+
+<script>
+
+/* ABRIR AO CLICAR EM QUALQUER LUGAR */
+document.addEventListener("click", function(){
+    document.getElementById("scene").classList.add("open");
+}, { once: true });
+
+/* CRIAR CORAÇÕES */
+for(let i=0;i<20;i++){
+    let heart=document.createElement("div");
+    heart.className="heart";
+    heart.innerHTML="❤";
+    heart.style.left=Math.random()*100+"vw";
+    heart.style.animationDuration=(4+Math.random()*4)+"s";
+    document.body.appendChild(heart);
+}
+
+/* CRIAR PÉTALAS */
+for(let i=0;i<25;i++){
+    let petal=document.createElement("div");
+    petal.className="petal";
+    petal.style.left=Math.random()*100+"vw";
+    petal.style.animationDuration=(5+Math.random()*5)+"s";
+    document.body.appendChild(petal);
+}
+
+</script>
 
 </body>
 </html>
